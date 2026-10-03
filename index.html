@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>The File Room — Pivot Aide Tax Client App &amp; Firm Console</title>
+  <meta name="description"
+    content="The File Room — Client web application and firm management console for Pivot Aide Tax: secure document exchange, IRS-compliant Form 8879 signing, prepared return review, messaging, and billing.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='22 4 156 172'%3E%3Cellipse cx='100' cy='88' rx='69' ry='67' fill='%231D3D51'/%3E%3Cellipse cx='100' cy='90' rx='59' ry='55' fill='%232C5169'/%3E%3Ccircle cx='73' cy='90' r='26' fill='%23F2F8FC'/%3E%3Ccircle cx='127' cy='90' r='26' fill='%23F2F8FC'/%3E%3Ccircle cx='73' cy='90' r='16' fill='%23019FFF'/%3E%3Ccircle cx='127' cy='90' r='16' fill='%23019FFF'/%3E%3Ccircle cx='73' cy='90' r='7.5' fill='%2306202D'/%3E%3Ccircle cx='127' cy='90' r='7.5' fill='%2306202D'/%3E%3Cpath d='M100 103 L110 121 L100 131 L90 121 Z' fill='%23EAE42F'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+
+  <!-- SVG Brand Sprites: Uncle Pat Character Mark -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="pat" viewBox="0 0 200 220">
+      <!-- torso -->
+      <path
+        d="M100 128 C140 128 172 150 184 186 C188 198 190 209 190 220 L10 220 C10 209 12 198 16 186 C28 150 60 128 100 128 Z"
+        fill="#1D3D51" />
+      <path d="M46 170 C32 184 21 200 16 220 L10 220 C10 209 12 198 16 186 C22 168 33 152 47 141 Z" fill="#163344" />
+      <path d="M154 170 C168 184 179 200 184 220 L190 220 C190 209 188 198 184 186 C178 168 167 152 153 141 Z"
+        fill="#163344" />
+      <!-- shirt behind the collar -->
+      <path d="M66 128 L134 128 L100 184 Z" fill="#FFFFFF" />
+      <!-- collar flaps -->
+      <path d="M63 141 L100 170 L79 199 L43 161 Z" fill="#FFFFFF" />
+      <path d="M137 141 L100 170 L121 199 L157 161 Z" fill="#FFFFFF" />
+      <path d="M137 141 L100 170 L121 199 L157 161 Z" fill="#E3ECF3" opacity=".3" />
+      <!-- tie -->
+      <path d="M89 150 L111 150 L116 178 L84 178 Z" fill="#CFC922" />
+      <path d="M84 178 L116 178 L110 202 L100 214 L90 202 Z" fill="#EAE42F" />
+      <path d="M84 178 L116 178 L100 188 Z" fill="#B4AE18" opacity=".5" />
+      <!-- ear tufts -->
+      <path d="M52 46 L46 10 L88 34 Z" fill="#16303F" />
+      <path d="M148 46 L154 10 L112 34 Z" fill="#16303F" />
+      <!-- head -->
+      <ellipse cx="100" cy="88" rx="69" ry="67" fill="#1D3D51" />
+      <!-- facial disc -->
+      <ellipse cx="100" cy="90" rx="59" ry="55" fill="#2C5169" />
+      <!-- brow -->
+      <path d="M100 44 C132 44 152 60 156 82 C146 66 126 57 100 57 C74 57 54 66 44 82 C48 60 68 44 100 44 Z"
+        fill="#24455B" />
+      <!-- eyes -->
+      <circle cx="73" cy="90" r="26" fill="#F2F8FC" />
+      <circle cx="127" cy="90" r="26" fill="#F2F8FC" />
+      <circle cx="73" cy="90" r="16" fill="#019FFF" />
+      <circle cx="127" cy="90" r="16" fill="#019FFF" />
+      <circle cx="73" cy="90" r="7.5" fill="#06202D" />
+      <circle cx="127" cy="90" r="7.5" fill="#06202D" />
+      <circle cx="67" cy="83" r="3.4" fill="#FFFFFF" opacity=".92" />
+      <circle cx="121" cy="83" r="3.4" fill="#FFFFFF" opacity=".92" />
+      <!-- beak -->
+      <path d="M100 103 L110 121 L100 131 L90 121 Z" fill="#EAE42F" />
+      <path d="M100 121 L110 121 L100 131 Z" fill="#B4AE18" opacity=".45" />
+    </symbol>
+
+    <symbol id="pat-av" viewBox="22 4 156 172">
+      <!-- torso -->
+      <path
+        d="M100 128 C140 128 172 150 184 186 C188 198 190 209 190 220 L10 220 C10 209 12 198 16 186 C28 150 60 128 100 128 Z"
+        fill="#1D3D51" />
+      <!-- shirt behind the collar -->
+      <path d="M66 128 L134 128 L100 184 Z" fill="#FFFFFF" />
+      <!-- collar flaps -->
+      <path d="M63 141 L100 170 L79 199 L43 161 Z" fill="#FFFFFF" />
+      <path d="M137 141 L100 170 L121 199 L157 161 Z" fill="#FFFFFF" />
+      <!-- tie -->
+      <path d="M89 150 L111 150 L116 178 L84 178 Z" fill="#CFC922" />
+      <path d="M84 178 L116 178 L110 202 L100 214 L90 202 Z" fill="#EAE42F" />
+      <!-- ear tufts -->
+      <path d="M52 46 L46 10 L88 34 Z" fill="#16303F" />
+      <path d="M148 46 L154 10 L112 34 Z" fill="#16303F" />
+      <!-- head -->
+      <ellipse cx="100" cy="88" rx="69" ry="67" fill="#1D3D51" />
+      <!-- facial disc -->
+      <ellipse cx="100" cy="90" rx="59" ry="55" fill="#2C5169" />
+      <!-- brow -->
+      <path d="M100 44 C132 44 152 60 156 82 C146 66 126 57 100 57 C74 57 54 66 44 82 C48 60 68 44 100 44 Z"
+        fill="#24455B" />
+      <!-- eyes -->
+      <circle cx="73" cy="90" r="26" fill="#F2F8FC" />
+      <circle cx="127" cy="90" r="26" fill="#F2F8FC" />
+      <circle cx="73" cy="90" r="16" fill="#019FFF" />
+      <circle cx="127" cy="90" r="16" fill="#019FFF" />
+      <circle cx="73" cy="90" r="7.5" fill="#06202D" />
+      <circle cx="127" cy="90" r="7.5" fill="#06202D" />
+      <!-- beak -->
+      <path d="M100 103 L110 121 L100 131 L90 121 Z" fill="#EAE42F" />
+    </symbol>
+  </svg>
+
+  <!-- Dual Device Stage Container -->
+  <div class="stage desk-mode" id="stage">
+    <div class="device desk" id="device">
+
+      <!-- Phone Notch (Active in Phone Mode) -->
+      <div class="notch"><span>9:41</span><span class="dot"></span><span>●●●●</span></div>
+
+      <!-- ============================== THE WEB APP ============================== -->
+      <div class="app" id="app">
+
+        <!-- Top Application Bar -->
+        <header class="appbar">
+          <div class="appbar-left" style="display:flex;align-items:center;gap:11px">
+            <button class="appbar-hamburger" id="btn-toggle-menu" aria-label="Open Navigation Menu">☰</button>
+            <svg class="owl-av" viewBox="22 4 156 172" style="width:26px;height:26px;flex:none" aria-hidden="true">
+              <use href="#pat-av"></use>
+            </svg>
+            <span class="wm">Pivot Aide <span>Tax</span></span>
+          </div>
+
+          <span class="sp" style="flex:1"></span>
+
+          <div class="appbar-right" style="display:flex;align-items:center;gap:12px">
+            <span class="firebase-badge connected" id="firebase-status-badge" data-go="firm" title="Firebase Backend Connected (piovde-tax) — Click for Firm Console" style="cursor:pointer"><span class="fb-dot"></span>Firebase</span>
+            <button id="btn-open-arch-rules" class="appbar-rules-btn" title="View IRS Pub 1345 &amp; FTC Safeguards Architecture Rules">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              <span>Rules</span>
+            </button>
+
+            <button class="appbar-btn bell" data-go="news" aria-label="Notifications" title="Updates &amp; Deadlines"
+              style="background:transparent;border:0;cursor:pointer;position:relative;display:grid;place-items:center;padding:4px;color:#fff">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.7 21a2 2 0 0 1-3.4 0" />
+              </svg>
+              <span class="dot"
+                style="position:absolute;top:2px;right:2px;width:7px;height:7px;border-radius:50%;background:var(--gold);border:1.5px solid var(--night)"></span>
+            </button>
+            <div class="av" data-go="signin" title="Michael Whitfield — Click to view account" style="cursor:pointer">MW</div>
+          </div>
+        </header>
+
+        <!-- Main Workspace (Sidebar + Content) -->
+        <div class="workspace">
+
+          <!-- Slide-out Drawer Backdrop for Mobile -->
+          <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+          <!-- Desktop Sidebar Navigation / Mobile Drawer -->
+          <aside class="side" id="side" aria-label="App Navigation">
+            <nav class="side-nav">
+              <a data-go="home"><span class="ic">◉</span>Your file</a>
+              <a data-go="docs"><span class="ic">↑</span>Documents</a>
+              <a data-go="sign"><span class="ic">✎</span>Sign</a>
+              <a data-go="return"><span class="ic">☰</span>Your return</a>
+              <a data-go="msgs"><span class="ic">✉</span>Messages</a>
+
+              <span class="grp">Your firm</span>
+              <a data-go="svcs"><span class="ic">◎</span>Services</a>
+              <a data-go="pay"><span class="ic">$</span>Billing</a>
+              <a data-go="news"><span class="ic">●</span>Updates</a>
+              <a data-go="firm"><span class="ic">⚙</span>Firm view</a>
+            </nav>
+
+            <div class="side-footer">
+              <div><b>The File Room</b> v1.0</div>
+              <div>IRS Pub 1345 &middot; FTC Safeguards</div>
+            </div>
+          </aside>
+
+          <!-- Scrollable Main Content Area -->
+          <main class="body" id="body">
+
+            <!-- ============================== 01 SIGN IN ============================== -->
+            <section class="scr on" id="s-signin">
+              <div style="text-align:center;padding:14px 0 6px">
+                <svg viewBox="0 0 200 220" style="width:74px;height:82px" aria-hidden="true">
+                  <use href="#pat"></use>
+                </svg>
+                <h2 class="h-s" style="margin-top:12px">Welcome back.</h2>
+                <p class="lede">Your file is open. Sign in to see where it stands.</p>
+              </div>
+
+              <div class="card">
+                <div class="field">
+                  <label>Email</label>
+                  <input type="email" id="input-signin-email" value="m.whitfield@example.com">
+                </div>
+                <div class="field">
+                  <label>Password</label>
+                  <input type="password" id="input-signin-password" value="Password123!">
+                </div>
+                <div style="margin-top:16px">
+                  <button class="btn btn-g full" id="btn-login-continue">Continue</button>
+                </div>
+                <p class="legal" style="text-align:center;cursor:pointer;margin-top:12px">Forgot your password?</p>
+              </div>
+
+              <div class="card night">
+                <span class="chip night">Step 2 of 2</span>
+                <h3 style="margin-top:10px;color:#fff">Verification code</h3>
+                <p class="sub" style="color:var(--night-ink-2)">We sent a six-digit code to the phone ending <b
+                    style="color:#fff">&bull;&bull;&bull;&bull; 4417</b>. It expires in ten minutes.</p>
+
+                <div class="code-inputs" style="display:flex;gap:7px;margin-top:14px">
+                  <input class="code-box" type="text" maxlength="1" value="4" inputmode="numeric" pattern="[0-9]*"
+                    aria-label="Verification digit 1">
+                  <input class="code-box" type="text" maxlength="1" value="1" inputmode="numeric" pattern="[0-9]*"
+                    aria-label="Verification digit 2">
+                  <input class="code-box" type="text" maxlength="1" value="9" inputmode="numeric" pattern="[0-9]*"
+                    aria-label="Verification digit 3">
+                  <input class="code-box" type="text" maxlength="1" value="0" inputmode="numeric" pattern="[0-9]*"
+                    aria-label="Verification digit 4">
+                  <input class="code-box" type="text" maxlength="1" value="2" inputmode="numeric" pattern="[0-9]*"
+                    aria-label="Verification digit 5">
+                  <input class="code-box active-empty" type="text" maxlength="1" value="" inputmode="numeric"
+                    pattern="[0-9]*" aria-label="Verification digit 6" placeholder=" " autofocus>
+                </div>
+
+                <div style="margin-top:16px">
+                  <button class="btn btn-g full" id="btn-verify-signin">Verify and open my file</button>
+                </div>
+                <p class="legal" style="color:var(--night-ink-2);margin-top:12px">Trust this device for 30 days. Passkey
+                  and Face ID sign-in available on the phone app.</p>
+              </div>
+
+              <p class="legal" style="margin-top:14px"><b>Why the second step:</b> multi-factor authentication is
+                required for anyone reaching customer information under the FTC Safeguards Rule (16 CFR
+                &sect;314.4(c)(5)). It is not optional and it cannot be turned off.</p>
+            </section>
+
+            <!-- ============================== 02 HOME / YOUR FILE ============================== -->
+            <section class="scr" id="s-home">
+              <span class="eyebrow">Tax year 2026 &middot; Married filing jointly</span>
+              <h2 class="h-s">Your file is open.</h2>
+              <p class="lede">Two things are waiting on you. Everything else is with us.</p>
+
+              <div class="card night">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+                  <div>
+                    <span class="chip gold">In preparation</span>
+                    <h3 style="margin-top:10px;color:#fff">Federal &amp; 3 states</h3>
+                    <p class="sub" style="color:var(--night-ink-2)">MD resident &middot; VA and PA non-resident</p>
+                  </div>
+                  <div style="text-align:right;flex:none">
+                    <div style="font-family:var(--f-display);font-size:1.75rem;color:#fff;font-weight:300"
+                      id="file-progress-text">68%</div>
+                    <div style="font-size:.7rem;color:var(--night-ink-2)">complete</div>
+                  </div>
+                </div>
+
+                <div class="prog"><i id="file-progress-bar" style="width:68%"></i></div>
+
+                <div class="steps">
+                  <div class="step done" data-go="svcs" style="cursor:pointer" title="View engagement scope and services">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">Engagement letter signed</div>
+                      <div class="m">14 January</div>
+                    </div>
+                  </div>
+                  <div class="step done" data-go="docs" style="cursor:pointer" title="View received documents">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">Documents received &mdash; 11 of 13</div>
+                      <div class="m">Last upload 2 September</div>
+                    </div>
+                  </div>
+                  <div class="step now" data-go="docs" style="cursor:pointer" title="Upload outstanding documents">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">Two documents still needed</div>
+                      <div class="m">Rental 1099-MISC and the Q4 mileage log</div>
+                    </div>
+                  </div>
+                  <div class="step" data-go="return" style="cursor:pointer" title="View return status">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">Return prepared and reviewed</div>
+                      <div class="m">Estimated 9&ndash;11 September</div>
+                    </div>
+                  </div>
+                  <div class="step" data-go="sign" style="cursor:pointer" title="Proceed to Form 8879 remote signature">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">You approve and sign Form 8879</div>
+                      <div class="m">Takes about four minutes</div>
+                    </div>
+                  </div>
+                  <div class="step" data-go="return" style="cursor:pointer" title="Track IRS filing and acceptance">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">Filed and accepted</div>
+                      <div class="m">We watch for the acceptance and tell you</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action Required Card -->
+              <div class="card" style="border-left:3px solid var(--gold)">
+                <span class="chip warn">Needs you</span>
+                <h3 style="margin-top:9px">Two documents outstanding</h3>
+                <p class="sub">The rental 1099-MISC from Keystone Property Group, and your Q4 mileage log. Nothing else
+                  is holding the return up.</p>
+                <div style="margin-top:14px">
+                  <button class="btn btn-g" data-go="docs">Upload them</button>
+                </div>
+              </div>
+
+              <div class="g2 stackp">
+                <div class="stat" id="home-stat-invoice" data-go="pay" style="cursor:pointer" title="Click to view and pay invoice">
+                  <div class="n">$1,240</div>
+                  <div class="l">Invoice due 15 September &rarr;</div>
+                </div>
+                <div class="stat" data-go="msgs" style="cursor:pointer" title="Click to open messages with Uncle Pat">
+                  <div class="n">2</div>
+                  <div class="l">Unread messages &rarr;</div>
+                </div>
+              </div>
+
+              <div class="card">
+                <span class="eyebrow">Coming up on your file</span>
+                <div class="kv" style="margin-top:10px">
+                  <span>Q3 estimated payment</span>
+                  <b>15 Sep 2026</b>
+                </div>
+                <div class="kv">
+                  <span>Extended individual return deadline</span>
+                  <b>15 Oct 2026</b>
+                </div>
+                <div class="kv">
+                  <span>Year-end planning call</span>
+                  <b>Book in November</b>
+                </div>
+              </div>
+
+              <div class="note">
+                <svg viewBox="0 0 200 220" aria-hidden="true">
+                  <use href="#pat"></use>
+                </svg>
+                <div>
+                  <q>A file that stays open all year is a file nobody has to reconstruct in April.</q>
+                  <div class="by">Uncle Pat</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ============================== 03 DOCUMENTS ============================== -->
+            <section class="scr" id="s-docs">
+              <span class="eyebrow">Tax year 2026</span>
+              <h2 class="h-s">Documents</h2>
+              <p class="lede">Eleven of thirteen in. We tell you exactly what is missing &mdash; never &ldquo;send
+                everything.&rdquo;</p>
+
+              <!-- Interactive Dropzone -->
+              <div class="drop" id="drop-zone">
+                <input type="file" id="file-input-hidden" multiple style="display:none"
+                  accept=".pdf,.jpg,.jpeg,.png,.csv">
+                <div class="ic">↑</div>
+                <div class="t">Drop files here, or take a photo</div>
+                <div class="m">PDF, JPG, PNG, HEIC, CSV &middot; up to 50 MB each &middot; scanned on arrival</div>
+                <div style="margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+                  <button class="btn btn-b sm" id="btn-choose-files">Choose files</button>
+                  <button class="btn btn-o sm" id="btn-use-camera">Use camera</button>
+                </div>
+              </div>
+
+              <!-- Documents Groups -->
+              <div class="rows" id="docs-list-container">
+                <!-- Rendered dynamically by js/app.js -->
+              </div>
+
+              <p class="legal"><b>How your documents are held.</b> Encrypted in transit and at rest, scanned for malware
+                on upload, and visible only to you and the staff assigned to your file. Every open, download and share
+                is logged. We keep what the law requires us to keep and dispose of the rest &mdash; the Safeguards Rule
+                sets a two-year outside limit on customer information no longer needed.</p>
+            </section>
+
+            <!-- ============================== 04 SIGN (FORM 8879) ============================== -->
+            <section class="scr" id="s-sign">
+              <span class="eyebrow">Form 8879 &middot; IRS e-file authorization</span>
+              <h2 class="h-s">One signature, and we file.</h2>
+              <p class="lede">The IRS requires us to prove it was really you. That is the identity check below &mdash;
+                not a credit application, and it does not affect your credit.</p>
+
+              <div class="card">
+                <div style="display:flex;gap:12px;align-items:center">
+                  <span class="ic"
+                    style="width:42px;height:50px;border:1px solid var(--line);border-radius:2px;display:grid;place-items:center;background:var(--surface-2);font-size:.72rem;font-family:var(--f-mono);font-weight:600">8879</span>
+                  <div class="g" style="flex:1">
+                    <div class="t" style="font-weight:500">IRS e-file Signature Authorization</div>
+                    <div class="m" style="font-size:.78rem;color:var(--ink-3)">Federal &middot; 2 pages &middot;
+                      prepared 8 September</div>
+                  </div>
+                  <button class="btn btn-o sm" id="btn-read-8879">Read it</button>
+                </div>
+              </div>
+
+              <!-- Regulated KBA Interactive Quiz Card -->
+              <div class="card night" id="kba-quiz-card">
+                <span class="chip night" id="kba-step-badge">Identity check &middot; step 1 of 3</span>
+                <span id="kba-attempts-badge" style="display:none"></span>
+
+                <h3 style="margin-top:10px" id="kba-question-text">Which of these lenders held a mortgage in your name?
+                </h3>
+                <p class="sub" style="color:var(--night-ink-2)">Generated from your credit file. Pick the correct answer
+                  &mdash; or &ldquo;none of these,&rdquo; which is sometimes right.</p>
+
+                <div class="opts" id="kba-options-container">
+                  <label><i></i>Cardinal Trust Bank</label>
+                  <label class="pick"><i></i>Meridian Home Lending</label>
+                  <label><i></i>Fairwater Savings</label>
+                  <label><i></i>None of these</label>
+                </div>
+
+                <div style="margin-top:14px">
+                  <button class="btn btn-g full" id="btn-kba-continue">Continue</button>
+                </div>
+
+                <p class="legal" style="color:var(--night-ink-2);margin-top:12px">You get three attempts. If the
+                  questions do not work &mdash; and for some people they never do &mdash; we switch you to a handwritten
+                  signature and nothing is lost.</p>
+                <button class="btn btn-w sm" id="btn-kba-fallback" style="display:none">Switch to wet sign</button>
+              </div>
+
+              <div class="card">
+                <span class="eyebrow">After the identity check</span>
+                <div class="steps">
+                  <div class="step done">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">Read the return</div>
+                      <div class="m">Completed 8 September</div>
+                    </div>
+                  </div>
+                  <div class="step now" id="step-verify-id">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">Verify your identity</div>
+                      <div class="m">Three multiple-choice questions</div>
+                    </div>
+                  </div>
+                  <div class="step" id="step-draw-sig">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">Draw or type your signature</div>
+                      <div class="m">Both spouses sign separately</div>
+                    </div>
+                  </div>
+                  <div class="step" id="step-transmit-return">
+                    <span class="n"></span>
+                    <div>
+                      <div class="t">We transmit the return</div>
+                      <div class="m">Usually within one business day</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="legal"><b>What we keep.</b> IRS Publication 1345 requires the signed form, the date and time,
+                your IP address, the login used, the identity-verification result and the signature method, held in a
+                tamper-proof record for three years from the later of the due date or the date the IRS received the
+                return. The app records all of it automatically.</p>
+            </section>
+
+            <!-- ============================== 05 YOUR RETURN ============================== -->
+            <section class="scr" id="s-return">
+              <span class="eyebrow">Tax year 2026 &middot; ready for your review</span>
+              <h2 class="h-s">Your return is prepared.</h2>
+              <p class="lede">Read it, ask about anything on it, then sign. Nothing is filed until you say so.</p>
+
+              <div class="g2">
+                <div class="stat">
+                  <div class="n">$3,418</div>
+                  <div class="l">Federal refund</div>
+                </div>
+                <div class="stat">
+                  <div class="n">$612</div>
+                  <div class="l">Maryland balance due</div>
+                </div>
+              </div>
+
+              <div class="card">
+                <span class="eyebrow">Compared with last year</span>
+                <div class="kv" style="margin-top:10px">
+                  <span>Total income</span>
+                  <b>$214,806 &nbsp;<span style="color:var(--ok)">▲ 8%</span></b>
+                </div>
+                <div class="kv">
+                  <span>Taxable income</span>
+                  <b>$168,240</b>
+                </div>
+                <div class="kv">
+                  <span>Effective federal rate</span>
+                  <b>14.2%</b>
+                </div>
+                <div class="kv">
+                  <span>Total tax</span>
+                  <b>$30,491 &nbsp;<span style="color:var(--warn)">▲ 3%</span></b>
+                </div>
+              </div>
+
+              <div class="card" style="background:var(--surface-2)">
+                <h3>Three things changed from last year</h3>
+                <div class="steps">
+                  <div class="step">
+                    <span class="n" style="border:0;background:var(--gold);color:#0C1D28;font-weight:600"></span>
+                    <div>
+                      <div class="t">The rental went from a loss to a profit</div>
+                      <div class="m">Halcyon Row was let for the full year. Schedule E swings $9,100.</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <span class="n" style="border:0;background:var(--gold);color:#0C1D28;font-weight:600"></span>
+                    <div>
+                      <div class="t">You bought equipment in November</div>
+                      <div class="m">Expensed in full this year rather than depreciated. Worth $2,780 to you.</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <span class="n" style="border:0;background:var(--gold);color:#0C1D28;font-weight:600"></span>
+                    <div>
+                      <div class="t">Pennsylvania is new</div>
+                      <div class="m">Two months of on-site work created a non-resident filing there.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rows">
+                <div class="rowhead">The return, page by page</div>
+                <div class="row row-clickable" style="cursor:pointer"
+                  onclick="openModal('Form 1040 — Individual Tax Return', '<div style=\'padding:10px 0\'><p>Federal Form 1040 and accompanying schedules prepared by Denise R. for Michael and Elena Whitfield (14 pages).</p><p class=\'sub\' style=\'margin-top:10px\'>Federal refund: <b style=\'color:var(--ok)\'>$3,418.00</b> &middot; Total income: <b>$214,806</b></p></div>')">
+                  <span class="ic">☰</span>
+                  <div class="g">
+                    <div class="t">Form 1040 and schedules</div>
+                    <div class="m">14 pages</div>
+                  </div>
+                  <span class="chip">Read</span>
+                </div>
+                <div class="row row-clickable" style="cursor:pointer"
+                  onclick="openModal('Schedule C — Whitfield Design Co.', '<div style=\'padding:10px 0\'><p>Schedule C: Profit or Loss From Business (Sole Proprietorship) &mdash; Whitfield Design Co. (3 pages).</p><p class=\'sub\' style=\'margin-top:10px\'>Gross receipts: <b>$94,200</b> &middot; Net business profit: <b>$58,410</b></p></div>')">
+                  <span class="ic">☰</span>
+                  <div class="g">
+                    <div class="t">Schedule C &mdash; Whitfield Design Co.</div>
+                    <div class="m">3 pages</div>
+                  </div>
+                  <span class="chip">Read</span>
+                </div>
+                <div class="row row-clickable" style="cursor:pointer"
+                  onclick="openModal('Schedule E — 214 Halcyon Row', '<div style=\'padding:10px 0\'><p>Schedule E: Supplemental Income and Loss &mdash; Rental Real Estate at 214 Halcyon Row (2 pages).</p><p class=\'sub\' style=\'margin-top:10px\'>Net rental profit: <b>$9,100</b> (swung from prior year loss).</p></div>')">
+                  <span class="ic">☰</span>
+                  <div class="g">
+                    <div class="t">Schedule E &mdash; 214 Halcyon Row</div>
+                    <div class="m">2 pages</div>
+                  </div>
+                  <span class="chip">Read</span>
+                </div>
+                <div class="row row-clickable" style="cursor:pointer"
+                  onclick="openModal('Multi-State Tax Package', '<div style=\'padding:10px 0\'><p>State tax filings: Maryland Form 502 (Resident), Virginia Form 763 (Non-resident), and Pennsylvania Form 40NR (Non-resident) (12 pages).</p><p class=\'sub\' style=\'margin-top:10px\'>Maryland balance due: <b style=\'color:var(--warn)\'>$612.00</b></p></div>')">
+                  <span class="ic">☰</span>
+                  <div class="g">
+                    <div class="t">Maryland 502 &middot; Virginia 763 &middot; Pennsylvania 40NR</div>
+                    <div class="m">12 pages</div>
+                  </div>
+                  <span class="chip">Read</span>
+                </div>
+              </div>
+
+              <div style="display:flex;gap:9px;margin-top:16px;flex-wrap:wrap">
+                <button class="btn btn-g" data-go="sign">Approve and sign</button>
+                <button class="btn btn-o" data-go="msgs">Ask about something</button>
+                <button class="btn btn-o"
+                  onclick="showToast('Downloading compiled TY2026 return package (PDF)...', 'ok')">Download PDF</button>
+              </div>
+
+              <p class="legal">Sample figures for design purposes only. A prepared return in this app is a read-only
+                copy of what the firm filed; the app does not compute tax.</p>
+            </section>
+
+            <!-- ============================== 06 MESSAGES ============================== -->
+            <section class="scr" id="s-msgs">
+              <span class="eyebrow">Denise R. &middot; your preparer</span>
+              <h2 class="h-s">Messages</h2>
+              <p class="lede">Questions about your filing, answered where the documents already are. No email, no
+                attachments floating around.</p>
+
+              <div id="messages-thread">
+                <div class="msg">
+                  <span class="av">DR</span>
+                  <div>
+                    <div class="bub">
+                      <div class="who">Denise &middot; 2 Sep, 9:14</div>
+                      I have the closing disclosure &mdash; thank you. One question: was the Halcyon Row property let
+                      for the whole year, or was there a vacant stretch after the tenants left in March?
+                    </div>
+                  </div>
+                </div>
+
+                <div class="msg me">
+                  <span class="av">MW</span>
+                  <div>
+                    <div class="bub">
+                      <div class="who">You &middot; 2 Sep, 9:31</div>
+                      Vacant for six weeks, then relet from mid-May. I can dig out the new lease if that helps.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="msg">
+                  <span class="av">DR</span>
+                  <div>
+                    <div class="bub">
+                      <div class="who">Denise &middot; 2 Sep, 9:38</div>
+                      The lease would help &mdash; upload it whenever. Six weeks vacant while it was <em>available</em>
+                      to let does not cost you the deduction, so this is good news rather than bad.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="msg pat">
+                  <span class="av">
+                    <svg viewBox="22 4 156 172" aria-hidden="true">
+                      <use href="#pat-av"></use>
+                    </svg>
+                  </span>
+                  <div>
+                    <div class="bub" style="background:var(--surface-2)">
+                      <div class="who">Uncle Pat &middot; automatic</div>
+                      Reminder: your Q3 estimated payment is due 15 September. The voucher is in your documents, and you
+                      can pay it from the Billing tab.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Action Chips -->
+              <div class="quick">
+                <span>What do I still owe?</span>
+                <span>When will it be filed?</span>
+                <span>I got a letter</span>
+                <span>Can I add my spouse?</span>
+                <span>Book a call</span>
+              </div>
+
+              <!-- Message Composer -->
+              <div class="card" style="margin-top:14px">
+                <input type="text" id="msg-input-box" placeholder="Write a message&hellip;"
+                  style="width:100%;border:1px solid var(--line);border-radius:3px;padding:11px 13px;font-size:.88rem;color:var(--ink);background:var(--surface)">
+
+                <div style="display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap">
+                  <button class="btn btn-o sm" id="btn-attach-msg">Attach</button>
+                  <button class="btn btn-b sm" id="btn-send-msg">Send</button>
+                  <span style="flex:1"></span>
+                  <span class="chip ok">Replies within 1 business day</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- ============================== 07 SERVICES ============================== -->
+            <section class="scr" id="s-svcs">
+              <span class="eyebrow">Everything we do</span>
+              <h2 class="h-s">Add to your file.</h2>
+              <p class="lede">Prices are the same ones published on the site. Nothing starts until you accept a scope in
+                writing.</p>
+
+              <!-- Active File Scope Status Strip -->
+              <div class="svc-file-strip" id="svc-file-strip">
+                <div class="svc-strip-left">
+                  <span class="svc-strip-dot"></span>
+                  <div class="svc-strip-text">
+                    <span class="svc-strip-label">Active Engagement on File</span>
+                    <span class="svc-strip-val" id="svc-strip-active-title">2026 Individual Return (Form 1040) &middot;
+                      Federal + MD, VA, PA</span>
+                  </div>
+                </div>
+                <div class="svc-strip-right">
+                  <span class="chip ok" id="svc-strip-status-chip">1 Active Scope</span>
+                  <button class="btn-text-link" id="btn-view-active-scopes" type="button">View file scope
+                    &rarr;</button>
+                </div>
+              </div>
+
+              <div class="g2 stackp" id="services-grid">
+                <!-- Individual Return -->
+                <div class="svcard" id="card-svc-individual" data-service-key="individual">
+                  <div class="svcard-header">
+                    <h3>Individual return</h3>
+                    <span class="chip ok sm" id="badge-svc-individual">Active on file</span>
+                  </div>
+                  <p>Federal and every state you need. Upfront price, no mystery invoice.</p>
+                  <span class="pz">from $200</span>
+                  <button class="btn btn-o sm btn-service-action" data-service-key="individual"
+                    data-title="Individual Return" data-price="from $200"><span class="btn-ic" style="margin-right:6px">✎</span>Review &amp; Add Schedules</button>
+                </div>
+
+                <!-- Business Return -->
+                <div class="svcard" id="card-svc-business" data-service-key="business">
+                  <div class="svcard-header">
+                    <h3>Business return</h3>
+                    <span class="chip sm" id="badge-svc-business" style="display:none"></span>
+                  </div>
+                  <p>S-corp, partnership, C-corp. Books reviewed before the return is built.</p>
+                  <span class="pz">quoted on scope</span>
+                  <button class="btn btn-o sm btn-service-action" data-service-key="business"
+                    data-title="Business Return" data-price="quoted on scope"><span class="btn-ic" style="margin-right:6px">+</span>Add</button>
+                </div>
+
+                <!-- Bookkeeping -->
+                <div class="svcard" id="card-svc-bookkeeping" data-service-key="bookkeeping">
+                  <div class="svcard-header">
+                    <h3>Bookkeeping</h3>
+                    <span class="chip sm" id="badge-svc-bookkeeping" style="display:none"></span>
+                  </div>
+                  <p>Monthly reconciliation and statements you can actually use.</p>
+                  <span class="pz">monthly</span>
+                  <button class="btn btn-o sm btn-service-action" data-service-key="bookkeeping"
+                    data-title="Bookkeeping" data-price="monthly"><span class="btn-ic" style="margin-right:6px">+</span>Add</button>
+                </div>
+
+                <!-- Accounting Cleanup -->
+                <div class="svcard" id="card-svc-cleanup" data-service-key="cleanup">
+                  <div class="svcard-header">
+                    <h3>Accounting cleanup</h3>
+                    <span class="chip sm" id="badge-svc-cleanup" style="display:none"></span>
+                  </div>
+                  <p>Catch-up and reconstruction, so the return stands on numbers that are right.</p>
+                  <span class="pz">quoted on scope</span>
+                  <button class="btn btn-o sm btn-service-action" data-service-key="cleanup"
+                    data-title="Accounting Cleanup" data-price="quoted on scope"><span class="btn-ic" style="margin-right:6px">+</span>Add</button>
+                </div>
+
+                <!-- Audit & Resolution -->
+                <div class="svcard" id="card-svc-audit" data-service-key="audit">
+                  <div class="svcard-header">
+                    <h3>Audit &amp; resolution</h3>
+                    <span class="chip sm" id="badge-svc-audit" style="display:none"></span>
+                  </div>
+                  <p>Notices, examinations, back taxes, unfiled years.</p>
+                  <span class="pz">by tier</span>
+                  <button class="btn btn-o sm btn-service-action" data-service-key="audit"
+                    data-title="Audit &amp; Resolution" data-price="by tier"><span class="btn-ic" style="margin-right:6px">+</span>Add</button>
+                </div>
+
+                <!-- Flagship: The Standing File -->
+                <div class="svcard flag" id="card-svc-flagship" data-service-key="flagship">
+                  <div class="svcard-header">
+                    <span class="chip gold">Flagship</span>
+                    <span class="chip sm" id="badge-svc-flagship" style="display:none"></span>
+                  </div>
+                  <h3>The Standing File</h3>
+                  <p>Year-long strategy, a dedicated advisor, premium support. For high-income individuals and for
+                    businesses.</p>
+                  <span class="pz">contact for pricing</span>
+                  <button class="btn btn-g sm btn-service-action" data-service-key="flagship"
+                    data-title="The Standing File" data-price="contact for pricing"><span class="btn-ic" style="margin-right:6px">💬</span>Talk to us</button>
+                </div>
+              </div>
+
+              <!-- Free IRS Notice Review ("Send us the letter") -->
+              <div class="card night" id="card-notice-upload-box">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+                  <span class="chip night">Free, always</span>
+                  <div class="notice-quick-tags">
+                    <span class="tag-pill">IRS CP2000</span>
+                    <span class="tag-pill">CP504 Levy</span>
+                    <span class="tag-pill">State Notices</span>
+                    <span class="tag-pill">5071C ID Check</span>
+                  </div>
+                </div>
+                <h3 style="margin-top:10px">Send us the letter.</h3>
+                <p class="sub" style="color:var(--night-ink-2)">Photograph any IRS or state notice and we will tell you
+                  what it actually says within two business days &mdash; whether or not you are a client.</p>
+                <div style="margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                  <button class="btn btn-w" id="btn-upload-notice">Upload a notice</button>
+                  <span style="color:var(--night-ink-2);font-size:.78rem;font-family:var(--f-mono)">SLA: Plain-English
+                    response in &le; 48 hours</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- ============================== 08 PAY / BILLING ============================== -->
+            <section class="scr" id="s-pay">
+              <span class="eyebrow">Invoice 2026-0418</span>
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                <h2 class="h-s" id="billing-header-due">$1,240.00 due</h2>
+                <span id="invoice-status-chip" class="chip sm" style="display:none"></span>
+              </div>
+              <p class="lede">Due 15 September. Pay from the app, or set the file to pay automatically when work is
+                approved.</p>
+
+              <!-- Current Itemized Invoice -->
+              <div class="card" id="card-invoice-items">
+                <div class="kv"><span>Individual return &mdash; federal</span><b>$400.00</b></div>
+                <div class="kv"><span>Maryland, Virginia, Pennsylvania</span><b>$285.00</b></div>
+                <div class="kv"><span>Schedule C &mdash; Whitfield Design Co.</span><b>$310.00</b></div>
+                <div class="kv"><span>Schedule E &mdash; one property</span><b>$245.00</b></div>
+                <div class="kv" style="border-top:1.5px solid var(--line);padding-top:10px;margin-top:4px">
+                  <span><b>Total Fee</b></span>
+                  <b style="font-size:1.05rem;font-family:var(--f-mono)">$1,240.00</b>
+                </div>
+              </div>
+
+              <!-- Auto-Pay on Approval Toggle -->
+              <div class="card" id="card-autopay-toggle">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:14px">
+                  <div style="flex:1">
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <span style="font-weight:600;font-size:.88rem">Pay automatically when approved</span>
+                      <span class="chip gold sm" id="autopay-status-badge" style="display:none">Active</span>
+                    </div>
+                    <p class="sub" style="margin-top:3px;font-size:.78rem">Authorizes automatic bank transfer when you
+                      approve and sign Form 8879, so tax e-filing is never delayed.</p>
+                  </div>
+                  <label class="switch" style="flex-shrink:0">
+                    <input type="checkbox" id="autopay-checkbox" aria-label="Toggle auto-pay on approval">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Payment Method Selector Segmented Control -->
+              <div class="seg seg-pay">
+                <div class="on" data-method="bank" id="seg-pay-bank">Bank transfer</div>
+                <div data-method="card" id="seg-pay-card">Card</div>
+              </div>
+
+              <!-- Payment Processing Container -->
+              <div class="card" id="card-payment-form">
+                <!-- Bank Transfer View -->
+                <div id="pay-view-bank" class="pay-method-view active">
+                  <div style="display:flex;gap:12px;align-items:center">
+                    <span class="ic"
+                      style="width:36px;height:36px;border-radius:4px;background:var(--surface-2);display:grid;place-items:center;font-size:1.15rem">&#127974;</span>
+                    <div style="flex:1">
+                      <div class="t" style="font-weight:600;font-size:.9rem">Cardinal Trust &bull;&bull;&bull;&bull;
+                        8842</div>
+                      <div class="m" style="font-size:.77rem;color:var(--ink-3)">Checking &middot; saved March 2026
+                        &middot; ACH Direct Debit</div>
+                    </div>
+                    <span class="chip ok">No fee</span>
+                  </div>
+                  <div style="margin-top:8px">
+                    <button class="btn-text-link" id="btn-link-bank" type="button" style="font-size:.76rem">+ Link
+                      another checking or savings account</button>
+                  </div>
+                </div>
+
+                <!-- Card View (PCI Hosted Fields Simulation) -->
+                <div id="pay-view-card" class="pay-method-view" style="display:none">
+                  <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px">
+                    <label class="calc-row-left" style="font-size:.85rem;font-weight:500">
+                      <input type="radio" name="card-choice" value="saved" checked id="radio-saved-card">
+                      <span>Visa ending in <b>&bull;&bull;&bull;&bull; 4012</b> (exp 08/28)</span>
+                    </label>
+                    <span class="chip night sm" style="margin-left:auto">Saved Card</span>
+                  </div>
+
+                  <div style="margin-bottom:12px">
+                    <label class="calc-row-left" style="font-size:.85rem;font-weight:500">
+                      <input type="radio" name="card-choice" value="new" id="radio-new-card">
+                      <span>Use another debit or credit card</span>
+                    </label>
+                  </div>
+
+                  <!-- Hosted Fields Form (Active when 'new' card selected) -->
+                  <div id="new-card-fields"
+                    style="display:none;background:var(--surface-2);padding:12px;border-radius:4px;border:1px solid var(--line);margin-bottom:12px">
+                    <div class="field" style="margin-bottom:8px">
+                      <label style="font-size:.72rem">Card Number (Hosted Iframe)</label>
+                      <input type="text" id="input-card-num" placeholder="•••• •••• •••• ••••" maxlength="19"
+                        style="font-family:var(--f-mono);font-size:.86rem;padding:8px 10px;width:100%;box-sizing:border-box;background:var(--surface);border:1px solid var(--line);border-radius:3px">
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+                      <div class="field">
+                        <label style="font-size:.72rem">Expires</label>
+                        <input type="text" id="input-card-exp" placeholder="MM/YY" maxlength="5"
+                          style="font-family:var(--f-mono);font-size:.86rem;padding:8px 10px;width:100%;box-sizing:border-box;background:var(--surface);border:1px solid var(--line);border-radius:3px">
+                      </div>
+                      <div class="field">
+                        <label style="font-size:.72rem">CVC</label>
+                        <input type="text" id="input-card-cvc" placeholder="CVC" maxlength="4"
+                          style="font-family:var(--f-mono);font-size:.86rem;padding:8px 10px;width:100%;box-sizing:border-box;background:var(--surface);border:1px solid var(--line);border-radius:3px">
+                      </div>
+                      <div class="field">
+                        <label style="font-size:.72rem">Billing ZIP</label>
+                        <input type="text" id="input-card-zip" placeholder="21201" maxlength="5"
+                          style="font-family:var(--f-mono);font-size:.86rem;padding:8px 10px;width:100%;box-sizing:border-box;background:var(--surface);border:1px solid var(--line);border-radius:3px">
+                      </div>
+                    </div>
+                    <div
+                      style="display:flex;align-items:center;gap:6px;margin-top:8px;font-size:.7rem;color:var(--ink-3)">
+                      <span>🔒 PCI-DSS Level 1 tokenized frame &middot; encrypted</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="kv" style="margin-top:14px;border-top:1px dashed var(--line);padding-top:10px">
+                  <span>Invoice amount</span>
+                  <b style="font-family:var(--f-mono)">$1,240.00</b>
+                </div>
+                <div class="kv">
+                  <span>Processing surcharge</span>
+                  <b id="billing-fee-display" style="font-family:var(--f-mono)">$0.00</b>
+                </div>
+                <div class="kv" style="font-size:1.05rem;padding-top:4px">
+                  <span><b>Charged to your account</b></span>
+                  <b id="billing-total-display" style="color:var(--ink);font-family:var(--f-mono)">$1,240.00</b>
+                </div>
+
+                <div style="margin-top:16px">
+                  <button class="btn btn-g full" id="btn-pay-invoice">Pay $1,240.00</button>
+                </div>
+
+                <p class="legal" style="margin-top:12px">Paying by card adds a processing fee, shown before you confirm
+                  and only where surcharging is lawful in your state. Bank transfer never carries one &mdash; which is
+                  why it is the default here.</p>
+              </div>
+
+              <!-- Payment History Section -->
+              <div class="rows" id="billing-history-container">
+                <div class="rowhead" style="display:flex;justify-content:space-between;align-items:center">
+                  <span>Payment history &middot; click to view receipt</span>
+                  <span style="font-size:.72rem;color:var(--ink-3);font-family:var(--f-mono)">Tax Year 2025–2026</span>
+                </div>
+                <div class="row row-clickable" data-invoice-id="inv-prev-1" style="cursor:pointer"
+                  title="Click to view itemized receipt">
+                  <span class="ic" style="color:var(--ok)">&#10003;</span>
+                  <div class="g">
+                    <div class="t">Invoice 2026-0207</div>
+                    <div class="m">Q1 planning session &middot; paid 3 April &middot; View receipt &rarr;</div>
+                  </div>
+                  <b style="font-size:.85rem;font-family:var(--f-mono)">$350.00</b>
+                </div>
+                <div class="row row-clickable" data-invoice-id="inv-prev-2" style="cursor:pointer"
+                  title="Click to view itemized receipt">
+                  <span class="ic" style="color:var(--ok)">&#10003;</span>
+                  <div class="g">
+                    <div class="t">Invoice 2025-1140</div>
+                    <div class="m">TY2025 return &middot; paid 12 Feb 2026 &middot; View receipt &rarr;</div>
+                  </div>
+                  <b style="font-size:.85rem;font-family:var(--f-mono)">$1,105.00</b>
+                </div>
+              </div>
+
+              <p class="legal" style="margin-top:14px">Card details are entered on the processor's own hosted page and
+                never touch Pivot Aide systems &mdash; the arrangement that keeps the firm in the lightest PCI category.
+              </p>
+            </section>
+
+            <!-- ============================== 09 UPDATES ============================== -->
+            <section class="scr" id="s-news">
+              <span class="eyebrow">Your file &middot; and things worth knowing</span>
+              <h2 class="h-s">Updates</h2>
+              <p class="lede">What changed on your file, plus the deadlines and rule changes that actually touch you.
+                Never a newsletter blast.</p>
+
+              <div class="feed" id="updates-feed-list">
+                <div class="fitem new clickable" data-update-id="u-1" data-action="sign">
+                  <span class="d"></span>
+                  <div>
+                    <div class="t">Your Form 8879 is ready to sign</div>
+                    <div class="m">Once both signatures are in we transmit, usually the next business day.</div>
+                    <div class="w">Today, 8:02</div>
+                  </div>
+                </div>
+
+                <div class="fitem new clickable" data-update-id="u-2" data-action="msgs">
+                  <span class="d"></span>
+                  <div>
+                    <div class="t">Denise replied about the Halcyon Row vacancy</div>
+                    <div class="m">Six weeks vacant while available to let does not cost you the deduction.</div>
+                    <div class="w">2 Sep, 9:38</div>
+                  </div>
+                </div>
+
+                <div class="fitem clickable" data-update-id="u-3" data-action="svcs">
+                  <span class="d"></span>
+                  <div>
+                    <div class="t">Pennsylvania added to your file</div>
+                    <div class="m">Two months of on-site work created a non-resident filing obligation.</div>
+                    <div class="w">29 Aug</div>
+                  </div>
+                </div>
+
+                <div class="fitem clickable" data-update-id="u-4" data-action="pay">
+                  <span class="d"></span>
+                  <div>
+                    <div class="t">Q3 estimated payment due 15 September</div>
+                    <div class="m">The voucher is in your documents. You can pay it from Billing.</div>
+                    <div class="w">25 Aug</div>
+                  </div>
+                </div>
+
+                <div class="fitem clickable" data-update-id="u-5" data-action="rule-modal">
+                  <span class="d"></span>
+                  <div>
+                    <div class="t">Rule change that affects your rental</div>
+                    <div class="m">Uncle Pat's read on what changed and whether it moves your number. Two minutes.</div>
+                    <div class="w">18 Aug</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <span class="eyebrow">What you hear about</span>
+                <div class="kv" style="margin-top:9px"><span>Something needs you</span><b class="channel-val"
+                    data-key="needsYou">Push &middot; email</b></div>
+                <div class="kv"><span>Your return moves a stage</span><b class="channel-val" data-key="stageMove">Push
+                    &middot; email</b></div>
+                <div class="kv"><span>A deadline on your file</span><b class="channel-val" data-key="deadlines">Push
+                    &middot; email</b></div>
+                <div class="kv"><span>Rule changes that touch you</span><b class="channel-val"
+                    data-key="ruleChanges">Email</b></div>
+                <div class="kv"><span>Firm news</span><b class="channel-val muted" data-key="firmNews">Off</b></div>
+              </div>
+
+              <p class="legal">Every notification is something on your file or a rule that changes your number. You can
+                turn any of it off, and nothing here is marketing dressed as an alert.</p>
+            </section>
+
+            <!-- ============================== 10 FIRM VIEW / STAFF CONSOLE ============================== -->
+            <section class="scr" id="s-firm">
+              <span class="eyebrow">Staff side &middot; not visible to clients</span>
+              <h2 class="h-s">What the firm sees.</h2>
+              <p class="lede">The client app is only half the product. The other half is the board that keeps ninety
+                files moving without anyone remembering to chase.</p>
+
+              <div class="g2">
+                <div class="stat">
+                  <div class="n">17</div>
+                  <div class="l">Waiting on the client</div>
+                </div>
+                <div class="stat">
+                  <div class="n">6</div>
+                  <div class="l">Ready to review</div>
+                </div>
+              </div>
+
+              <div class="rows">
+                <div class="rowhead">Needs a person today</div>
+
+                <div class="row">
+                  <span class="ic">&#9888;</span>
+                  <div class="g">
+                    <div class="t">Okonjo, A. &mdash; 8879 unsigned 6 days</div>
+                    <div class="m">Two reminders sent &middot; escalate to a call</div>
+                  </div>
+                  <span class="chip warn btn-firm-act" data-action="chase" data-client="Okonjo, A."
+                    style="cursor:pointer" title="Click to dispatch escalation">Chase</span>
+                </div>
+
+                <div class="row">
+                  <span class="ic">&#9888;</span>
+                  <div class="g">
+                    <div class="t">Brennan Holdings LLC &mdash; KBA failed 3&times;</div>
+                    <div class="m">Switch to wet signature</div>
+                  </div>
+                  <span class="chip warn btn-firm-act" data-action="wet-signature" data-client="Brennan Holdings LLC"
+                    style="cursor:pointer" title="Click to generate wet signature package">Act</span>
+                </div>
+
+                <div class="row">
+                  <span class="ic">&#9711;</span>
+                  <div class="g">
+                    <div class="t">Whitfield, M. &amp; E. &mdash; 2 docs outstanding</div>
+                    <div class="m">Auto-reminder goes out tomorrow</div>
+                  </div>
+                  <span class="chip btn-firm-act" data-action="waiting" data-client="Whitfield, M. &amp; E."
+                    style="cursor:pointer" title="Click to view outstanding items">Waiting</span>
+                </div>
+
+                <div class="row">
+                  <span class="ic">&#9711;</span>
+                  <div class="g">
+                    <div class="t">Ferrante, L. &mdash; IRS notice uploaded</div>
+                    <div class="m">Free read promised within 2 business days</div>
+                  </div>
+                  <span class="chip btn-firm-act" data-action="notice-review" data-client="Ferrante, L."
+                    style="cursor:pointer" title="Click to view notice draft">Due Thu</span>
+                </div>
+              </div>
+
+              <div class="card">
+                <span class="eyebrow">What the firm side has to carry</span>
+                <div class="steps">
+                  <div class="step">
+                    <span class="n" style="border:0;background:var(--night);color:#fff"></span>
+                    <div>
+                      <div class="t">Role-based access</div>
+                      <div class="m">Staff see only files they are assigned. Every view is logged.</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <span class="n" style="border:0;background:var(--night);color:#fff"></span>
+                    <div>
+                      <div class="t">Document request templates</div>
+                      <div class="m">By return type, so the checklist builds itself.</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <span class="n" style="border:0;background:var(--night);color:#fff"></span>
+                    <div>
+                      <div class="t">Automatic chasing</div>
+                      <div class="m">Nobody should be remembering who owes a W-2.</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <span class="n" style="border:0;background:var(--night);color:#fff"></span>
+                    <div>
+                      <div class="t">The 8879 evidence record</div>
+                      <div class="m">Assembled automatically, retained three years, exportable on demand.</div>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <span class="n" style="border:0;background:var(--night);color:#fff"></span>
+                    <div>
+                      <div class="t">Audit log and retention</div>
+                      <div class="m">Who touched what, and disposal when the retention clock runs out.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Architecture Notes Section inside Screen 10 Firm View -->
+              <div class="card night" style="margin-top:28px">
+                <span class="tag"
+                  style="font-family:var(--f-mono);font-size:.63rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px">Architecture
+                  notes</span>
+                <h3 style="color:#fff;font-size:1.3rem;margin-bottom:14px">The three things that actually matter</h3>
+                <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:14px">
+                  <div class="c" style="background:var(--night-3);padding:18px;border:1px solid var(--night-line);border-radius:4px">
+                    <span class="k" style="font-family:var(--f-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px">The division</span>
+                    <h4 style="color:#fff;font-size:1rem;margin-bottom:8px">Not a tax engine</h4>
+                    <p style="font-size:.83rem;color:var(--night-ink-2);line-height:1.55">The app is the custody, exchange and relationship layer &mdash; files, messages, signatures, answers and
+                      money. The return is prepared in the firm's software by a person.</p>
+                  </div>
+                  <div class="c" style="background:var(--night-3);padding:18px;border:1px solid var(--night-line);border-radius:4px">
+                    <span class="k" style="font-family:var(--f-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px">The hard part</span>
+                    <h4 style="color:#fff;font-size:1rem;margin-bottom:8px">Signing is the regulated bit</h4>
+                    <p style="font-size:.83rem;color:var(--night-ink-2);line-height:1.55">Remote signing of Form 8879 needs knowledge-based identity verification, a three-attempt limit, a fallback
+                      to wet signature, and a tamper-proof three-year evidence record. That is the piece to buy, not build.</p>
+                  </div>
+                  <div class="c" style="background:var(--night-3);padding:18px;border:1px solid var(--night-line);border-radius:4px">
+                    <span class="k" style="font-family:var(--f-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px">The obligation</span>
+                    <h4 style="color:#fff;font-size:1rem;margin-bottom:8px">Building it means owning it</h4>
+                    <p style="font-size:.83rem;color:var(--night-ink-2);line-height:1.55">A firm that runs its own portal is a financial institution under the FTC Safeguards Rule: a named Qualified
+                      Individual, written risk assessment, MFA, encryption, annual penetration testing, and a 30-day breach clock.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Relocated Firebase Cloud Infrastructure Card -->
+              <div class="card night" id="firebase-cloud-card" style="margin-top:20px">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+                  <span class="chip gold">Cloud Infrastructure</span>
+                  <span class="firebase-badge connected" id="firebase-card-badge">
+                    <span class="fb-dot"></span>Connected: piovde-tax
+                  </span>
+                </div>
+                <h3 style="margin-top:12px;color:#fff">Firebase Cloud Services &middot; Telemetry &amp; Storage</h3>
+                <p class="sub" style="color:var(--night-ink-2)">Real-time NoSQL Firestore, Cloud Authentication, Document
+                  Storage, and Google Analytics Telemetry.</p>
+
+                <div
+                  style="background:var(--night-3);border:1px solid var(--night-line);border-radius:4px;padding:14px;margin-top:14px;font-family:var(--f-mono);font-size:.74rem;color:var(--night-ink-2);line-height:1.85">
+                  <div><b>PROJECT ID:</b> <span style="color:#fff">piovde-tax</span></div>
+                  <div><b>AUTH DOMAIN:</b> <span style="color:#fff">piovde-tax.firebaseapp.com</span></div>
+                  <div><b>STORAGE BUCKET:</b> <span style="color:#fff">piovde-tax.firebasestorage.app</span></div>
+                  <div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--night-line)">
+                    <div><b>AUTH SERVICE:</b> <span style="color:#2ecc71" data-auth-status>Live ✓ (Email / Password)</span>
+                    </div>
+                    <div><b>ANALYTICS:</b> <span style="color:#2ecc71" data-analytics-status>Live ✓ (G-JKCY3TFFHW)</span></div>
+                    <div><b>FIRESTORE DB:</b> <span style="color:var(--gold)" data-firestore-status>Checking...</span> <a
+                        href="https://console.firebase.google.com/project/piovde-tax/firestore" target="_blank" rel="noopener"
+                        style="color:var(--blue);text-decoration:underline;margin-left:6px;font-family:var(--f-sans);font-size:.72rem">Open
+                        Console &rarr;</a></div>
+                    <div><b>STORAGE BUCKET:</b> <span style="color:var(--gold)" data-storage-status>Ready for setup</span> <a
+                        href="https://console.firebase.google.com/project/piovde-tax/storage" target="_blank" rel="noopener"
+                        style="color:var(--blue);text-decoration:underline;margin-left:6px;font-family:var(--f-sans);font-size:.72rem">Open
+                        Console &rarr;</a></div>
+                  </div>
+                </div>
+
+                <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+                  <button class="btn btn-g sm" id="btn-test-firebase">Ping Cloud Services</button>
+                  <button class="btn btn-w sm" id="btn-sync-firebase">Sync Audit Log</button>
+                  <button class="btn btn-o sm" id="btn-firebase-guide" style="border-color:var(--night-line);color:#fff">Console
+                    Setup Guide</button>
+                </div>
+              </div>
+
+              <div style="text-align:center;padding:24px 0 10px;color:var(--night-ink-2);font-size:.78rem">
+                Prototype &amp; Client Application for Pivot Aide Tax. Sample client data is invented. Figures, deadlines and rule references are drawn from current IRS and FTC sources.
+              </div>
+            </section>
+
+          </main><!-- /body -->
+        </div><!-- /workspace -->
+
+        <!-- Mobile Phone Bottom Tab Bar -->
+        <nav class="tabbar" id="tabbar" aria-label="Mobile Bottom Navigation">
+          <button class="on" data-go="home"><span class="ic">◉</span>File</button>
+          <button data-go="docs"><span class="ic">↑</span>Docs</button>
+          <button data-go="return"><span class="ic">☰</span>Return</button>
+          <button data-go="msgs"><span class="ic">✉</span>Messages</button>
+          <button data-go="pay"><span class="ic">$</span>Billing</button>
+        </nav>
+
+      </div><!-- /app -->
+    </div><!-- /device -->
+  </div><!-- /stage -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal-card" id="modal-container">
+      <!-- Injected dynamically -->
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Firebase SDK & Client Integration -->
+  <script type="module" src="js/firebase.js"></script>
+
+  <!-- Application Logic -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
